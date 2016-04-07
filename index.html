@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Ryacas : R to yacas interface">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Ryacas</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/grzegorzmazur/ryacas">View on GitHub</a>
+
+          <h1 id="project_title">Ryacas</h1>
+          <h2 id="project_tagline">R to yacas interface</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/grzegorzmazur/ryacas/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/grzegorzmazur/ryacas/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Ryacas (github project name ryacas) is an <a href="https://www.r-project.org/">R</a> package that allows R users to access the <a href="http://www.yacas.org">yacas</a> computer algebra system from within R. It can be used for computer algebra, exact arithmetic, ASCII pretty printing and R to TeX output. R, yacas and Ryacas are all free software packages distributed under the GPL. Samples of Ryacas are in this sample session, in this message regarding calculus, in this message which solves a nonlinear equation and in the package vignette. Ryacas is <a href="https://cran.r-project.org/web/packages/Ryacas/index.html">available on CRAN</a> now.</p>
+
+<p>Readers should also note the availability of the <a href="https://cran.r-project.org/web/packages/rSymPy/index.html">rSymPy</a> CRAN project which interfaces to the jython version of the <a href="http://www.sympy.org/">sympy</a> computer algebra system. Also <a href="https://github.com/ggrothendieck/rmathpiper">rMathpiper</a> provides an R interface to <a href="http://www.mathpiper.org/">MathPiper</a> (a modified java version of yacas).</p>
+
+<h2>
+<a id="news" class="anchor" href="#news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NEWS</h2>
+
+<p>In addition to the NEWS items below see the NEWS file that comes with Ryacas. It is more focused on changes in the package itself than the news listed here.</p>
+
+<ul>
+<li>September 14, 2014. A new version, Ryacas 0.2.12.1 has been uploaded. It fixes some problems running under R 3.1 .</li>
+<li>September 7, 2011. A new version, Ryacas 0.2-11, has been added to the repository and uploaded to CRAN. It addresses certain changes that occurred in R 2.14.</li>
+<li>February 5, 2010. A new version, Ryacas 0.2-10, has been added to the repository and uploaded to CRAN. It is a bug fix version.</li>
+<li>October 21, 2009. The java version of yacas project appears to have moved to Mathpiper of the Mathrider project. See announcement here. The STATUS section below has been updated accordingly.</li>
+<li>October 21, 2009. YacasCE (google translation) for the pocket PC (Windows mobile) is available.</li>
+<li>August 23, 2009. It seems that a new release of the XML package has again broken Ryacas. Use XML 2.5.3 or XML 1.9.0 with Ryacas instead.</li>
+<li>July 13/09. It may be that the problem between Ryacas 0.2-9 and XML 2.3-0 (mentioned in news item for Mar 12/09) is resolved by simply using the new release of the XML package, XML 2.5-3 instead of the older versions of the XML package. Will need to check a bit more to be sure.</li>
+<li>Mar 12/09. Just found an incompatibility between Ryacas 0.2-9 and XML 2.3-0. Until this is fixed use Ryacas 0.2-7 and XML 1.96-0. If you are having difficulty with this try the rSymPy package instead.</li>
+<li>Mar 9/09. UNIX/Linux Installation section further down on this page has been rewritten.</li>
+<li>Mar 3/09. Ryacas 0.2-9 is now available on CRAN. Primary change is to require XML 2.1-0 or higher and some fixes to the documentation to pass R CMD CHECK on R 2.9.0. Note that Ryacas seems to work once again with the latest version the XML package, XML 2.1-0. It also worked with XML 1.96-0 but versions of the XML package after XML 1.96-0 but before XML 2.1-0 did not work with Ryacas.</li>
+<li>Dec 21/08. Added Troubleshooting instructions on how to use XML 1.96-0 with Ryacas even if you have a newer version of XML installed at the same time.</li>
+<li>Nov 16/08. In Troubleshooting section below, Ryacas works with XML package version 1.96-0 but not with XML package version 1.98-1.</li>
+<li>May 07/08. In Troubleshooting section below added a tip about deleting .yacCon .</li>
+<li>Feb 04/08. Gregor Gorjanc's blog has an article on how to use Ryacas via Sweave in LyX.</li>
+<li>Oct 17/07. Added an item to the troubleshooting section that Ryacas 0.2-7 has only been tested with yacas 1.0.63. Windows users of Ryacas 0.2-7 will automatically get yacas 1.0.63 if they use the Ryacas yacasInstall() command to install yacas but users on Mac and UNIX platforms currently need to be aware of this so they install yacas 1.0.63 and not a different version of yacas. The SystemRequirements: line of the Ryacas DESCRIPTION file indicates that yacas 1.0.63 or greater should be used; however, versions greater than 1.0.63 have not been tested and so might not work with Ryacas 0.2-7.</li>
+<li>Oct 15/07. Reorganized multiple Installation and multiple Troubleshooting sections (end of this page) into a single section for each with subsections.</li>
+<li>Sep 9/07. Version 0.2-7 of Ryacas uploaded to CRAN. Changes include socket timing improvement in yacas.R suggested by Petr Savicky, a new Encoding: line in DESCRIPTION file to handle R 2.6.0 warnings and several other minor changes to handle R 2.6.0 compatability.</li>
+<li>Aug 19/07. dep=TRUE is the default for install.packages so instructions have been simplified.</li>
+<li>May 13/07. The install.packages('Ryacas', dep = TRUE) command for installing Ryacas on Mac is now the same as on UNIX so the installation sections for Mac and UNIX have been combined into one below.</li>
+<li>May 12/07. Ryacas 0.2-6 now on CRAN. Bug fix version. See NEWS.</li>
+<li>May 5/07. In Links section to right added new link to CRAN. (Removed links to Omegahat and Ryacas Yahoo group since Ryacas distribution is now via CRAN.)</li>
+<li>May 1/07. Ryacas has been uploaded to CRAN. (Previously it was on Omegahat.) Also Ryacas is upgraded to 0.2-5 to accomodate changes in R that were made with R 2.5.0. Earlier versions of R will not work with this version of Ryacas. Note that yacas.exe is no longer included with Ryacas but for Windows users only there does exist a yacasInstall() command that can be issued without arguments from within R to download and install yacas.</li>
+<li>Jan 17/06. Added Wikipedia CAS Comparison to Links section on right.</li>
+<li>Jan 9/06. The Downloads tab above contains yacas 1.0.63 source code in a .tar.gz file as well as the Windows yacas 1.0.63 binaries in a .zip file. yacas.exe and scripts.dat have been removed from the svn repository in preparation for CRAN -- as CRAN packages cannot have binaries in their source :(</li>
+<li>Dec 28/06. Added a note for installing Ryacas under Gentoo on this page in the UNIX TROUBLESHOOTING section below.</li>
+<li>Dec 23/06. The Sample Session formerly on this page has been moved to the Wiki. See Wiki tab above.</li>
+<li>Dec 6/06. The two vignettes are now combined into one. Click on Ryacas - vignette in Links section to right.</li>
+<li>Nov 19/06. The very latest (development) version (to become 0.2-4) is available via svn from the Source tab at top of this page. It is expected that this version will become eventually be available from CRAN. Until then use Ryacas 0.2-3 as in following news items. Anyone who would like to test the development version out, any feedback (to the developers listed under TEAM) would be appreciated.</li>
+<li>Nov 19/06. Ryacas 0.2-3 is now available for download from Omegahat via the install.packages command (or the Ryacas on Omegahat - Download links)</li>
+<li>Nov 16/06. Ryacas 0.2-3 is available from google groups (see Ryacas on google groups - Download link to right). Note that google groups has the annoying habit of translating dashes in filenames to spaces so after downloading the file you will have to change the name so that any spaces are replaced with dashes.</li>
+</ul>
+
+<h2>
+<a id="technology" class="anchor" href="#technology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TECHNOLOGY</h2>
+
+<p>Ryacas is written in R. It uses a recursive decent R-to-yacas translator and an XML-based OpenMath yacas-to-R translator. Yacas is accessed via a thin C++ wrapper generated by <a href="http://www.rcpp.org/">Rcpp</a>.</p>
+
+<h2>
+<a id="source-repository" class="anchor" href="#source-repository" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SOURCE REPOSITORY</h2>
+
+<p>The git repository on <a href="https://github.com">GitHub</a> (click on View on GitHub button above) contains the source code of Ryacas and generated PDF file for the vignette.</p>
+
+<h2>
+<a id="status" class="anchor" href="#status" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>STATUS</h2>
+
+<p></p><dl>
+  <dt>Ryacas</dt>
+  <dd>The Ryacas package was developed several years ago and development has largely stopped (although a bug fix version was issued Feb 5, 2010) and now effort goes into the rMathpiper and rSymPy projects.</dd>
+  <dt>Yacas</dt>
+  <dd>Regarding yacas itself (as opposed to Ryacas), the original developer behind yacas appears to have left the yacas project. Just before he left he rewrote yacas in Java. Currently Alberto González Palomo continues to make improvements to the C version yacas although there have been no recent releases.</dd>
+  <dt>MathpiperIDE</dt>
+  <dd>The java version of yacas was adopted by the MathpiperIDE project in 2008 (which had been called Mathrider at the time and though the name has since been changed) and Ted Kosan has indicated that under the MathpiperIDE/Mathrider project he has forked the java version of yacas and he and Howard "Sherm" Ostrowsky have made 2,700 svn commits (from March 2008 to October 2009) of which about half were for Mathpiper (and the rest for Mathrider). The new name Mathpiper is used to distinguish it from the apparently unmaintained yacas.jar prior to the fork. (The original version of the java version of yacas is available on the yacas site).</dd>
+  <dt>Mathpiper</dt>
+  <dd>Mathpiper is located at <a href="http://mathpiper.googlecode.com">http://mathpiper.googlecode.com</a>. The mathpiper.jar file is located in the mathrider/jars directory in the !MathPiperIDE (formerly Mathrider) distribution which can be found at <a href="http://mathrider.org">http://mathrider.org</a>. The javadocs can be found here. One can launch the GUI console like this: java -jar mathpiper.jar One can launch the text console like this: java -cp mathpiper.jar org.mathpiper.ui.text.consoles.Console and one can launch the help application like this: java -cp mathpiper.jar org.mathpiper.ui.gui.help.FunctionTreePanel One significant new feature in Mathpiper is the ability to emit R code using the following command (which puts Mathpiper in a mode such that all code emitted is R): PrettyPrinter("RForm") This new feature was added to Mathpiper version 0.76t .</dd>
+
+<h2>
+<a id="r-interface" class="anchor" href="#r-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>R INTERFACE</h2>
+
+<p>There are 8 interfaces. All of them are built on top of yacas.character:</p>
+
+<ol>
+<li>yacas.character. Pass a raw yacas character string to yacas function. e.g. yacas('x*x')</li>
+<li>yacas.expression. Pass an R expression to yacas function. e.g. yacas(expression(x*x))</li>
+<li>yacas.function. Pass an R function name which defines a one-line R function. e.g. f &lt;- function(x) x*x; yacas(f)</li>
+<li>yacas.formula. Pass an R formula object whose right hand side will be regarded as an expression to pass to yacas.expression. e.g. yacas(~ x<em>x) 1. Sym object. These objects are internally yacas strings. They can be combined with arithmetic operators The print method calls yacas. e.g. x &lt;- Sym('x'); x</em>x </li>
+<li>Expr object. These objects are internally R expressions. They can be combined with artithmetic operators. e.g. x &lt;- Exprq(x); x*x </li>
+<li>yacmode() which places the session in a mode where one can directly type in yacas commands.</li>
+</ol>
+
+<h2>
+<a id="sample-session" class="anchor" href="#sample-session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMPLE SESSION</h2>
+
+<p>Not all the facilities of yacas are built into Ryacas but its easy to add them yourself -- typically with one line of code. For example, here we add an interface to the Ryacas EigenValues function and run an example.</p>
+
+<h2>
+<a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MORE INFORMATION</h2>
+
+<p>The R commands</p>
+
+<pre><code>library(Ryacas)
+package?Ryacas
+</code></pre>
+
+<p>will display pointers to the help commands, vignette, home page, demos and THANKS, WISHLIST and NEWS files. These files, including pdf versions of the vignette, can also be found in the Source repository by clicking on the Source tab above.</p>
+
+<h2>
+<a id="team" class="anchor" href="#team" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TEAM</h2>
+
+<p>Rob Goedman, goedman at mac dot com<br>
+Gabor Grothendieck, ggrothendieck at gmail dot com<br>
+Søren Højsgaard, sorenh at math.aau.dk<br>
+Ayal Pinkus, apinkus at xs4all dot nl<br>
+Grzegorz Mazur, teoretyk at gmail dot com<br>
+Contact Gabor if you need assistance or Rob if its Mac-related.  </p>
+</dl>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Ryacas maintained by <a href="https://github.com/grzegorzmazur">grzegorzmazur</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
