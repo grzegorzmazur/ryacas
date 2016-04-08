@@ -31,7 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Ryacas (github project name ryacas) is an <a href="https://www.r-project.org/">R</a> package that allows R users to access the <a href="http://www.yacas.org">yacas</a> computer algebra system from within R. It can be used for computer algebra, exact arithmetic, ASCII pretty printing and R to TeX output. R, yacas and Ryacas are all free software packages distributed under the GPL. Samples of Ryacas are in this sample session, in this message regarding calculus, in this message which solves a nonlinear equation and in the package vignette. Ryacas is <a href="https://cran.r-project.org/web/packages/Ryacas/index.html">available on CRAN</a> now.</p>
+        <p>Ryacas (github project name ryacas) is an <a href="https://www.r-project.org/">R</a> package that allows R users to access the <a href="http://www.yacas.org">yacas</a> computer algebra system from within R. It can be used for computer algebra, exact arithmetic, ASCII pretty printing and R to TeX output. R, Ryacas and yacas are all free software packages distributed under the GPL and LGPL, respectively. See <a href="#SAMPLES">here</a> or the package vignette for examples of yacas calculations performed from wihin R. Ryacas is <a href="https://cran.r-project.org/web/packages/Ryacas/index.html">available on CRAN</a> now.</p>
 
 <p>Readers should also note the availability of the <a href="https://cran.r-project.org/web/packages/rSymPy/index.html">rSymPy</a> CRAN project which interfaces to the jython version of the <a href="http://www.sympy.org/">sympy</a> computer algebra system. Also <a href="https://github.com/ggrothendieck/rmathpiper">rMathpiper</a> provides an R interface to <a href="http://www.mathpiper.org/">MathPiper</a> (a modified java version of yacas).</p>
 
@@ -86,7 +86,7 @@
 <h2>
 <a id="status" class="anchor" href="#status" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>STATUS</h2>
 
-<p></p><dl>
+<dl>
   <dt>Ryacas</dt>
   <dd>The Ryacas package was developed several years ago and development has largely stopped (although a bug fix version was issued Feb 5, 2010) and now effort goes into the rMathpiper and rSymPy projects.</dd>
   <dt>Yacas</dt>
@@ -94,7 +94,8 @@
   <dt>MathpiperIDE</dt>
   <dd>The java version of yacas was adopted by the MathpiperIDE project in 2008 (which had been called Mathrider at the time and though the name has since been changed) and Ted Kosan has indicated that under the MathpiperIDE/Mathrider project he has forked the java version of yacas and he and Howard "Sherm" Ostrowsky have made 2,700 svn commits (from March 2008 to October 2009) of which about half were for Mathpiper (and the rest for Mathrider). The new name Mathpiper is used to distinguish it from the apparently unmaintained yacas.jar prior to the fork. (The original version of the java version of yacas is available on the yacas site).</dd>
   <dt>Mathpiper</dt>
-  <dd>Mathpiper is located at <a href="http://mathpiper.googlecode.com">http://mathpiper.googlecode.com</a>. The mathpiper.jar file is located in the mathrider/jars directory in the !MathPiperIDE (formerly Mathrider) distribution which can be found at <a href="http://mathrider.org">http://mathrider.org</a>. The javadocs can be found here. One can launch the GUI console like this: java -jar mathpiper.jar One can launch the text console like this: java -cp mathpiper.jar org.mathpiper.ui.text.consoles.Console and one can launch the help application like this: java -cp mathpiper.jar org.mathpiper.ui.gui.help.FunctionTreePanel One significant new feature in Mathpiper is the ability to emit R code using the following command (which puts Mathpiper in a mode such that all code emitted is R): PrettyPrinter("RForm") This new feature was added to Mathpiper version 0.76t .</dd>
+  <dd>Mathpiper is located at http://mathpiper.googlecode.com. The mathpiper.jar file is located in the mathrider/jars directory in the !MathPiperIDE (formerly Mathrider) distribution which can be found at http://mathrider.org. The javadocs can be found here. One can launch the GUI console like this: java -jar mathpiper.jar One can launch the text console like this: java -cp mathpiper.jar org.mathpiper.ui.text.consoles.Console and one can launch the help application like this: java -cp mathpiper.jar org.mathpiper.ui.gui.help.FunctionTreePanel One significant new feature in Mathpiper is the ability to emit R code using the following command (which puts Mathpiper in a mode such that all code emitted is R): PrettyPrinter("RForm") This new feature was added to Mathpiper version 0.76t .</dd>
+</dl>
 
 <h2>
 <a id="r-interface" class="anchor" href="#r-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>R INTERFACE</h2>
@@ -102,18 +103,121 @@
 <p>There are 8 interfaces. All of them are built on top of yacas.character:</p>
 
 <ol>
-<li>yacas.character. Pass a raw yacas character string to yacas function. e.g. yacas('x*x')</li>
-<li>yacas.expression. Pass an R expression to yacas function. e.g. yacas(expression(x*x))</li>
-<li>yacas.function. Pass an R function name which defines a one-line R function. e.g. f &lt;- function(x) x*x; yacas(f)</li>
-<li>yacas.formula. Pass an R formula object whose right hand side will be regarded as an expression to pass to yacas.expression. e.g. yacas(~ x<em>x) 1. Sym object. These objects are internally yacas strings. They can be combined with arithmetic operators The print method calls yacas. e.g. x &lt;- Sym('x'); x</em>x </li>
-<li>Expr object. These objects are internally R expressions. They can be combined with artithmetic operators. e.g. x &lt;- Exprq(x); x*x </li>
+<li>yacas.character. Pass a raw yacas character string to yacas function. e.g. <code>yacas('x*x')</code>
+</li>
+<li>yacas.expression. Pass an R expression to yacas function. e.g. <code>yacas(expression(x*x))</code>
+</li>
+<li>yacas.function. Pass an R function name which defines a one-line R function. e.g. <code>f &lt;- function(x) x*x; yacas(f)</code>
+</li>
+<li>yacas.formula. Pass an R formula object whose right hand side will be regarded as an expression to pass to yacas.expression. e.g. <code>yacas(~ x*x)</code>
+</li>
+<li>Sym object. These objects are internally yacas strings. They can be combined with arithmetic operators The print method calls yacas. e.g. <code>x &lt;- Sym('x'); x*x</code>
+</li>
+<li>Expr object. These objects are internally R expressions. They can be combined with artithmetic operators. e.g. <code>x &lt;- Exprq(x); x*x</code>
+</li>
 <li>yacmode() which places the session in a mode where one can directly type in yacas commands.</li>
 </ol>
 
 <h2>
-<a id="sample-session" class="anchor" href="#sample-session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMPLE SESSION</h2>
+<a id="samples" class="anchor" href="#samples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMPLES</h2>
 
-<p>Not all the facilities of yacas are built into Ryacas but its easy to add them yourself -- typically with one line of code. For example, here we add an interface to the Ryacas EigenValues function and run an example.</p>
+<h3>
+<a id="sample-session" class="anchor" href="#sample-session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sample session</h3>
+
+<pre><code>&gt; library(Ryacas)
+&gt; # algebra
+&gt; x &lt;- Sym('x')
+&gt; (x+1) * (x-1)
+expression((x + 1) * (x - 1))
+&gt; Simplify("%")
+expression(x^2 - 1)
+PrettyForm("%")
+
+ 2 
+x - 1
+
+&gt; # calculus
+&gt; Integrate(x+tan(x), x)
+expression(x^2/2 - log(cos(x)))
+&gt; # exact arithmetic
+&gt; yacas('12/24')
+expression(1/2)
+&gt; # ASCII pretty printing
+&gt; exp(-x^2)/(cos(x)+exp(x))
+expression(exp(-x^2)/(cos(x) + exp(x)))
+&gt; PrettyForm("%")
+
+     /  /  2 \ \   
+  Exp\ -\ x  / /   
+-------------------
+Cos( x ) + Exp( x )
+
+&gt; # matrix - yacas matrices are row-wise
+&gt; List(List(1,2),List(x,6))
+expression(list(list(1, 2), list(x, 6)))
+&gt; PrettyForm("%")
+
+/              \
+| ( 1 ) ( 2 )  |
+|              |
+| ( x ) ( 6 )  |
+\              /
+
+&gt; # output TeX
+&gt; k &lt;- Sym('k')
+&gt; yacas(TeXForm((x+1)^2 + k^3), retclass = 'unquote')
+$\left( x + 1\right) ^{2} + k ^{3}$
+&gt;
+</code></pre>
+
+<h3>
+<a id="solving-nonlinear-equation" class="anchor" href="#solving-nonlinear-equation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solving nonlinear equation</h3>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-k">&gt;</span> library(<span class="pl-smi">Ryacas</span>)
+<span class="pl-k">&gt;</span> <span class="pl-smi">Asym</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>Asym<span class="pl-pds">"</span></span>); <span class="pl-smi">xmid</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>xmid<span class="pl-pds">"</span></span>); <span class="pl-smi">scal</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>scal<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span> <span class="pl-smi">x</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>); <span class="pl-smi">y</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span> Solve(<span class="pl-smi">Asym</span><span class="pl-k">/</span>(<span class="pl-c1">1</span><span class="pl-k">+</span>exp((<span class="pl-smi">xmid</span><span class="pl-k">-</span><span class="pl-smi">x</span>)<span class="pl-k">/</span><span class="pl-smi">scal</span>))<span class="pl-k">==</span><span class="pl-smi">y</span>, <span class="pl-smi">x</span>)
+expression(<span class="pl-k">list</span>(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-smi">xmid</span> <span class="pl-k">-</span> log(<span class="pl-smi">Asym</span><span class="pl-k">/</span><span class="pl-smi">y</span> <span class="pl-k">-</span> <span class="pl-c1">1</span>) <span class="pl-k">*</span> <span class="pl-smi">scal</span>))</pre></div>
+
+<h3>
+<a id="sample-calculus-session" class="anchor" href="#sample-calculus-session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sample calculus session</h3>
+
+<div class="highlight highlight-source-r"><pre><span class="pl-k">&gt;</span> library(<span class="pl-smi">Ryacas</span>)
+<span class="pl-smi">Loading</span> <span class="pl-smi">required</span> <span class="pl-smi">package</span><span class="pl-k">:</span> <span class="pl-smi">XML</span>
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-smi">x</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span> <span class="pl-smi">h</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">"</span>h<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># limit</span>
+<span class="pl-k">&gt;</span> Limit(<span class="pl-c1">1</span><span class="pl-k">/</span>(<span class="pl-c1">1</span><span class="pl-k">-</span><span class="pl-smi">x</span>), <span class="pl-smi">x</span>, <span class="pl-smi">Infinity</span>)
+expression(<span class="pl-c1">0</span>)
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># differentiation</span>
+<span class="pl-k">&gt;</span> deriv(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">3</span>, <span class="pl-smi">x</span>)
+expression(<span class="pl-c1">3</span> <span class="pl-k">*</span> <span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span>)
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># integration: indefinite and definite</span>
+<span class="pl-k">&gt;</span> Integrate(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">3</span>, <span class="pl-smi">x</span>)
+expression(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">4</span><span class="pl-k">/</span><span class="pl-c1">4</span>)
+<span class="pl-k">&gt;</span> Integrate(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">3</span>, <span class="pl-smi">x</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>)
+expression(<span class="pl-c1">1</span><span class="pl-k">/</span><span class="pl-c1">4</span>)
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># mean value</span>
+<span class="pl-k">&gt;</span> Limit((cos(<span class="pl-smi">x</span><span class="pl-k">+</span><span class="pl-smi">h</span>)<span class="pl-k">-</span>cos(<span class="pl-smi">x</span>))<span class="pl-k">/</span><span class="pl-smi">h</span>, <span class="pl-smi">h</span>, <span class="pl-c1">0</span>)
+expression(<span class="pl-k">-</span>sin(<span class="pl-smi">x</span>))
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># min/max</span>
+<span class="pl-k">&gt;</span> Solve(deriv(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span><span class="pl-k">-</span><span class="pl-smi">x</span>, <span class="pl-smi">x</span>) <span class="pl-k">==</span> <span class="pl-c1">0</span>, <span class="pl-smi">x</span>)
+expression(<span class="pl-k">list</span>(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-c1">1</span><span class="pl-k">/</span><span class="pl-c1">2</span>))
+<span class="pl-k">&gt;</span>
+<span class="pl-k">&gt;</span> <span class="pl-c"># continuity</span>
+<span class="pl-k">&gt;</span> Limit(sin(<span class="pl-smi">x</span><span class="pl-k">+</span><span class="pl-smi">h</span><span class="pl-k">^</span><span class="pl-c1">2</span>) <span class="pl-k">-</span> sin(<span class="pl-smi">x</span><span class="pl-k">-</span><span class="pl-smi">h</span><span class="pl-k">^</span><span class="pl-c1">2</span>), <span class="pl-smi">h</span>, <span class="pl-c1">0</span>)
+expression(<span class="pl-c1">0</span>)</pre></div>
+
+<h3>
+<a id="more" class="anchor" href="#more" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MORE</h3>
+
+<p>Not all the facilities of yacas are built into Ryacas but its easy to add them yourself -- typically with one line of code. For example, <a href="http://tolstoy.newcastle.edu.au/R/e17/help/12/03/7407.html">here</a> we add an interface to the Ryacas EigenValues function and run an example.</p>
 
 <h2>
 <a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MORE INFORMATION</h2>
@@ -133,9 +237,9 @@ package?Ryacas
 Gabor Grothendieck, ggrothendieck at gmail dot com<br>
 Søren Højsgaard, sorenh at math.aau.dk<br>
 Ayal Pinkus, apinkus at xs4all dot nl<br>
-Grzegorz Mazur, teoretyk at gmail dot com<br>
-Contact Gabor if you need assistance or Rob if its Mac-related.  </p>
-</dl>
+Grzegorz Mazur, teoretyk at gmail dot com  </p>
+
+<p>Contact Gabor if you need assistance, Rob if its Mac-related or Grzegorz if it's a yacas issue</p>
       </section>
     </div>
 
