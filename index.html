@@ -31,7 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Ryacas (github project name ryacas) is an <a href="https://www.r-project.org/">R</a> package that allows R users to access the <a href="http://www.yacas.org">yacas</a> computer algebra system from within R. It can be used for computer algebra, exact arithmetic, ASCII pretty printing and R to TeX output. R, Ryacas and yacas are all free software packages distributed under the GPL and LGPL, respectively. See <a href="#SAMPLES">here</a> or the package vignette for examples of yacas calculations performed from wihin R. Ryacas is <a href="https://cran.r-project.org/web/packages/Ryacas/index.html">available on CRAN</a> now.</p>
+        <p>Ryacas (github project name ryacas) is an <a href="https://www.r-project.org/">R</a> package that allows R users to access the <a href="http://www.yacas.org">yacas</a> computer algebra system from within R. It can be used for computer algebra, exact arithmetic, ASCII pretty printing and R to TeX output. R, Ryacas and yacas are all free software packages distributed under the GPL and LGPL, respectively. See <a href="#examples">here</a> or the package vignette for examples of yacas calculations performed from wihin R. Ryacas is <a href="https://cran.r-project.org/web/packages/Ryacas/index.html">available on CRAN</a> now.</p>
 
 <p>Readers should also note the availability of the <a href="https://cran.r-project.org/web/packages/rSymPy/index.html">rSymPy</a> CRAN project which interfaces to the jython version of the <a href="http://www.sympy.org/">sympy</a> computer algebra system. Also <a href="https://github.com/ggrothendieck/rmathpiper">rMathpiper</a> provides an R interface to <a href="http://www.mathpiper.org/">MathPiper</a> (a modified java version of yacas).</p>
 
@@ -119,56 +119,55 @@
 </ol>
 
 <h2>
-<a id="samples" class="anchor" href="#samples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SAMPLES</h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EXAMPLES</h2>
 
 <h3>
 <a id="sample-session" class="anchor" href="#sample-session" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sample session</h3>
 
-<pre><code>&gt; library(Ryacas)
-&gt; # algebra
-&gt; x &lt;- Sym('x')
-&gt; (x+1) * (x-1)
-expression((x + 1) * (x - 1))
-&gt; Simplify("%")
-expression(x^2 - 1)
-PrettyForm("%")
+<div class="highlight highlight-source-r"><pre><span class="pl-k">&gt;</span> library(<span class="pl-smi">Ryacas</span>)
+<span class="pl-k">&gt;</span> <span class="pl-c"># algebra</span>
+<span class="pl-k">&gt;</span> <span class="pl-smi">x</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">'</span>x<span class="pl-pds">'</span></span>)
+<span class="pl-k">&gt;</span> (<span class="pl-smi">x</span><span class="pl-k">+</span><span class="pl-c1">1</span>) <span class="pl-k">*</span> (<span class="pl-smi">x</span><span class="pl-k">-</span><span class="pl-c1">1</span>)
+expression((<span class="pl-smi">x</span> <span class="pl-k">+</span> <span class="pl-c1">1</span>) <span class="pl-k">*</span> (<span class="pl-smi">x</span> <span class="pl-k">-</span> <span class="pl-c1">1</span>))
+<span class="pl-k">&gt;</span> Simplify(<span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>)
+expression(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span> <span class="pl-k">-</span> <span class="pl-c1">1</span>)
+PrettyForm(<span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>)
 
- 2 
-x - 1
+ <span class="pl-c1">2</span> 
+<span class="pl-smi">x</span> <span class="pl-k">-</span> <span class="pl-c1">1</span>
 
-&gt; # calculus
-&gt; Integrate(x+tan(x), x)
-expression(x^2/2 - log(cos(x)))
-&gt; # exact arithmetic
-&gt; yacas('12/24')
-expression(1/2)
-&gt; # ASCII pretty printing
-&gt; exp(-x^2)/(cos(x)+exp(x))
-expression(exp(-x^2)/(cos(x) + exp(x)))
-&gt; PrettyForm("%")
+<span class="pl-k">&gt;</span> <span class="pl-c"># calculus</span>
+<span class="pl-k">&gt;</span> Integrate(<span class="pl-smi">x</span><span class="pl-k">+</span>tan(<span class="pl-smi">x</span>), <span class="pl-smi">x</span>)
+expression(<span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span><span class="pl-k">/</span><span class="pl-c1">2</span> <span class="pl-k">-</span> log(cos(<span class="pl-smi">x</span>)))
+<span class="pl-k">&gt;</span> <span class="pl-c"># exact arithmetic</span>
+<span class="pl-k">&gt;</span> yacas(<span class="pl-s"><span class="pl-pds">'</span>12/24<span class="pl-pds">'</span></span>)
+expression(<span class="pl-c1">1</span><span class="pl-k">/</span><span class="pl-c1">2</span>)
+<span class="pl-k">&gt;</span> <span class="pl-c"># ASCII pretty printing</span>
+<span class="pl-k">&gt;</span> exp(<span class="pl-k">-</span><span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span>)<span class="pl-k">/</span>(cos(<span class="pl-smi">x</span>)<span class="pl-k">+</span>exp(<span class="pl-smi">x</span>))
+expression(exp(<span class="pl-k">-</span><span class="pl-smi">x</span><span class="pl-k">^</span><span class="pl-c1">2</span>)<span class="pl-k">/</span>(cos(<span class="pl-smi">x</span>) <span class="pl-k">+</span> exp(<span class="pl-smi">x</span>)))
+<span class="pl-k">&gt;</span> PrettyForm(<span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>)
 
-     /  /  2 \ \   
-  Exp\ -\ x  / /   
--------------------
-Cos( x ) + Exp( x )
+     <span class="pl-k">/</span>  <span class="pl-k">/</span>  <span class="pl-c1">2</span> \ \   
+  <span class="pl-smi">Exp</span>\ <span class="pl-k">-</span>\ <span class="pl-smi">x</span>  <span class="pl-k">/</span> <span class="pl-k">/</span>   
+<span class="pl-k">-------------------</span>
+Cos( <span class="pl-smi">x</span> ) <span class="pl-k">+</span> Exp( <span class="pl-smi">x</span> )
 
-&gt; # matrix - yacas matrices are row-wise
-&gt; List(List(1,2),List(x,6))
-expression(list(list(1, 2), list(x, 6)))
-&gt; PrettyForm("%")
+<span class="pl-k">&gt;</span> <span class="pl-c"># matrix - yacas matrices are row-wise</span>
+<span class="pl-k">&gt;</span> List(List(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>),List(<span class="pl-smi">x</span>,<span class="pl-c1">6</span>))
+expression(<span class="pl-k">list</span>(<span class="pl-k">list</span>(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>), <span class="pl-k">list</span>(<span class="pl-smi">x</span>, <span class="pl-c1">6</span>)))
+<span class="pl-k">&gt;</span> PrettyForm(<span class="pl-s"><span class="pl-pds">"</span>%<span class="pl-pds">"</span></span>)
 
-/              \
-| ( 1 ) ( 2 )  |
-|              |
-| ( x ) ( 6 )  |
-\              /
+<span class="pl-k">/</span>              \
+<span class="pl-k">|</span> ( <span class="pl-c1">1</span> ) ( <span class="pl-c1">2</span> )  <span class="pl-k">|</span>
+<span class="pl-k">|</span>              <span class="pl-k">|</span>
+<span class="pl-k">|</span> ( <span class="pl-smi">x</span> ) ( <span class="pl-c1">6</span> )  <span class="pl-k">|</span>
+\              <span class="pl-k">/</span>
 
-&gt; # output TeX
-&gt; k &lt;- Sym('k')
-&gt; yacas(TeXForm((x+1)^2 + k^3), retclass = 'unquote')
-$\left( x + 1\right) ^{2} + k ^{3}$
-&gt;
-</code></pre>
+<span class="pl-k">&gt;</span> <span class="pl-c"># output TeX</span>
+<span class="pl-k">&gt;</span> <span class="pl-smi">k</span> <span class="pl-k">&lt;-</span> Sym(<span class="pl-s"><span class="pl-pds">'</span>k<span class="pl-pds">'</span></span>)
+<span class="pl-k">&gt;</span> yacas(TeXForm((<span class="pl-smi">x</span><span class="pl-k">+</span><span class="pl-c1">1</span>)<span class="pl-k">^</span><span class="pl-c1">2</span> <span class="pl-k">+</span> <span class="pl-smi">k</span><span class="pl-k">^</span><span class="pl-c1">3</span>), <span class="pl-v">retclass</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>unquote<span class="pl-pds">'</span></span>)
+<span class="pl-k">$</span>\left( <span class="pl-smi">x</span> <span class="pl-k">+</span> <span class="pl-c1">1</span>\<span class="pl-smi">right</span>) <span class="pl-k">^</span>{<span class="pl-c1">2</span>} <span class="pl-k">+</span> <span class="pl-smi">k</span> <span class="pl-k">^</span>{<span class="pl-c1">3</span>}<span class="pl-k">$</span>
+<span class="pl-k">&gt;</span></pre></div>
 
 <h3>
 <a id="solving-nonlinear-equation" class="anchor" href="#solving-nonlinear-equation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solving nonlinear equation</h3>
@@ -215,7 +214,7 @@ expression(<span class="pl-k">list</span>(<span class="pl-smi">x</span> <span cl
 expression(<span class="pl-c1">0</span>)</pre></div>
 
 <h3>
-<a id="more" class="anchor" href="#more" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MORE</h3>
+<a id="more" class="anchor" href="#more" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More</h3>
 
 <p>Not all the facilities of yacas are built into Ryacas but its easy to add them yourself -- typically with one line of code. For example, <a href="http://tolstoy.newcastle.edu.au/R/e17/help/12/03/7407.html">here</a> we add an interface to the Ryacas EigenValues function and run an example.</p>
 
